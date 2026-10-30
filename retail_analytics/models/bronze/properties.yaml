@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: bronze_sales                 # must match the .sql file name exactly
+    description: "Raw copy of fact_sales from the source schema."
+    columns:
+      - name: sales_id
+        description: "Primary key of a sale."
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_sk
+        description: "Customer surrogate key."
+        data_tests:
+          - not_null
+
+  - name: bronze_returns
+    description: "Raw copy of fact_returns."
+
+  - name: bronze_customer
+    description: "Raw copy of dim_customer."
+    columns:
+      - name: customer_sk
+        data_tests:
+          - unique
+          - not_null
+
+  - name: bronze_product
+    description: "Raw copy of dim_product."
+
+  - name: bronze_store
+    description: "Raw copy of dim_store."
+
+  - name: bronze_date
+    description: "Raw copy of dim_date."

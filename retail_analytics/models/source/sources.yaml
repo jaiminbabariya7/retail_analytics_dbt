@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+    - name: source # dbt's label for this group of tables
+      database: dbt_dev
+      schema: source # the real schema in Databricks
+      tables:
+        - name: fact_sales
+          description: "This table contains sales data for the retail analytics project."
+
+        - name: fact_returns
+          description: "This table contains return data for the retail analytics project."
+
+        - name: dim_customer
+          description: "This table contains customer dimension data for the retail analytics project."
+
+        - name: dim_product
+          description: "This table contains product dimension data for the retail analytics project."
+
+        - name: dim_store
+          description: "This table contains store dimension data for the retail analytics project."
+
+        - name: dim_date
+          description: "This table contains date dimension data for the retail analytics project."
