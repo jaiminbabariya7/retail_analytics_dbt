@@ -33,6 +33,17 @@ models:
     # Config indicated by + and applies to all files under models/example/
     bronze:
       +materialized: view
+      +schema: bronze
 
     silver:
-      +materialized: view
+      +materialized: ephemeral
+      +schema: silver
+
+    gold:
+      +materialized: table
+      +schema: gold
+
+
+seeds:
+  retail_analytics:
+    +schema: bronze

@@ -13,6 +13,10 @@ models:
         description: "Customer surrogate key."
         data_tests:
           - not_null
+      - name: net_amount
+        description: "Net amount of the sale."
+        data_tests:
+          - generic_non_negative
 
   - name: bronze_returns
     description: "Raw copy of fact_returns."
@@ -28,8 +32,21 @@ models:
   - name: bronze_product
     description: "Raw copy of dim_product."
 
-  - name: bronze_store
-    description: "Raw copy of dim_store."
-
   - name: bronze_date
     description: "Raw copy of dim_date."
+
+  - name: bronze_store
+    description: "Raw copy of dim_store."
+    columns:
+      - name: store_sk
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: store_name
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['MegaMart Manhattan', 'MegaMart Brooklyn', 'MegaMart Austin', 'MegaMart San Jose', 'MegaMart Toronto']
+              config:
+                severity: warn

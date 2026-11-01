@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: silver_sales_info
+    description: "One row per sale, enriched with product category and customer attributes."
+    columns:
+      - name: sales_id
+        description: "Primary key; grain of the model."
+        data_tests:
+          - unique
+          - not_null
+    
+      - name: category
+        description: "Product category from bronze_product."
+        data_tests:
+            - not_null
+      
+      - name: gender
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                    - 'M'
+                    - 'F'
+                    - 'Other'
+                    
+      - name: loyalty_tier
+        description: "Customer loyalty tier; 'None' means no tier."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['None', 'Silver', 'Gold', 'Platinum']
+
+      - name: payment_method
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Card', 'Cash', 'Digital Wallet', 'Gift Card']
+
+      - name: gross_amount
+        data_tests:
+          - generic_non_negative
