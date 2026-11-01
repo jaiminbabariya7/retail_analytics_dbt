@@ -5,6 +5,7 @@ snapshots:
       
       config:
         schema: snapshots
+        database: '{{ target.catalog }}'
         unique_key: customer_sk
         strategy: check
         check_cols: ['loyalty_tier' , 'email' , 'phone']

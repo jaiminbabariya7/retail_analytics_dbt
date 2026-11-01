@@ -2,7 +2,7 @@ version: 2
 
 sources:
     - name: source # dbt's label for this group of tables
-      database: dbt_dev
+      database: '{{ target.catalog }}'
       schema: source # the real schema in Databricks
       tables:
         - name: fact_sales
