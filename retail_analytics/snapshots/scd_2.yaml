@@ -1,0 +1,11 @@
+snapshots:
+    - name: customer_snapshot
+      relation: source('source' , 'dim_customer')
+      description: "SCD Type-2: History of customers; tracks changes to loyalty tier, email and phone."
+      
+      config:
+        schema: snapshots
+        unique_key: customer_sk
+        strategy: check
+        check_cols: ['loyalty_tier' , 'email' , 'phone']
+        hard_deletes: invalidate
